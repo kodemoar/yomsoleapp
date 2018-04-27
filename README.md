@@ -1,9 +1,7 @@
-
 # Yomsole App
 
-> Naive console application to mess around with common terminals.
+> Random console application to mess around with your terminals.
 
-### Preparations
 Add `yom.exe` to your `PATH` for convenient command line access in Windows. Alternatively, `yomsole.exe` is also directly executable for basic commands.
 
 <table>
@@ -48,6 +46,11 @@ Add `yom.exe` to your `PATH` for convenient command line access in Windows. Alte
 	</tr>
 </table>
 
+Example call:
+```batch
+yom shutdown 15
+```
+
 ### Main features
 
  - Time elapsed since last system (re)boot
@@ -68,7 +71,7 @@ Add `yom.exe` to your `PATH` for convenient command line access in Windows. Alte
 
 ### Inspired by
 - Windows Command Prompt and PowerShell
-- <a href="https://git-scm.com" target="_blank">Git Bash</a>
+- [Git Bash](https://git-scm.com)
 
 ### Credits
-- <a href="http://patorjk.com/software/taag" target="_blank">Text to ASCII Art Generator (TAAG)</a> for app version text style
+- [Text to ASCII Art Generator (TAAG)](http://patorjk.com/software/taag) - for app version text style
