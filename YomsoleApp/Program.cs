@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Management;
 using System.Reflection;
-using System.Xml;
-using System.Xml.Linq;
 using YomsoleApp.Utils;
 
 namespace YomsoleApp
@@ -29,7 +25,7 @@ namespace YomsoleApp
             bool cmdMode = args.Length > 0;
             bool hasArgs = args.Length > 1;
 
-        read_next:
+            read_next:
             try
             {
                 if (cmdMode)
@@ -54,7 +50,7 @@ namespace YomsoleApp
                         break;
 
                     case "today":
-                        if (cmdMode && hasArgs && !string.IsNullOrEmpty(args[1]))
+                        if (cmdMode && hasArgs && !String.IsNullOrEmpty(args[1]))
                         {
                             temp = DateTime.Now.ToString(args[1]);
                         }
@@ -67,26 +63,7 @@ namespace YomsoleApp
                         break;
 
                     case "uptime":
-                        using (var eventLog = new EventLog("System", Environment.MachineName, "Winlogon"))
-                        {
-                            var logs = from e in eventLog.Entries.Cast<EventLogEntry>()
-                                       where e.TimeGenerated.Date == DateTime.Today && e.InstanceId == 7001
-                                       orderby e.TimeGenerated descending
-                                       select e;
-
-                            if (logs.Any())
-                            {
-                                Console.Write("It's been ");
-
-                                Rainbow.WriteColor(ConsoleColor.Green,
-                                    DateTime.Now.Subtract(logs.FirstOrDefault().TimeGenerated).With(up =>
-                                       $"{up.Hours}h {up.Minutes}m {up.Seconds}s"
-                                    )
-                                );
-
-                                Console.WriteLine(" since computer was last (re)started.");
-                            }
-                        }
+                        HandleSystemUptimeInquiry();
                         break;
 
                     case "shutdown":
@@ -130,6 +107,30 @@ namespace YomsoleApp
             }
         }
 
+        private static void HandleSystemUptimeInquiry()
+        {
+            using (var eventLog = new EventLog("System", Environment.MachineName, "Winlogon"))
+            {
+                var logs = from e in eventLog.Entries.Cast<EventLogEntry>()
+                           where e.TimeGenerated.Date == DateTime.Today && e.InstanceId == 7001
+                           orderby e.TimeGenerated descending
+                           select e;
+
+                if (logs.Any())
+                {
+                    Console.Write("It's been ");
+
+                    Rainbow.WriteColor(ConsoleColor.Green,
+                        DateTime.Now.Subtract(logs.FirstOrDefault().TimeGenerated).FormatWith(up =>
+                           $"{up.Hours}h {up.Minutes}m {up.Seconds}s"
+                        )
+                    );
+
+                    Console.WriteLine(" since computer was last (re)started.");
+                }
+            }
+        }
+
         /// <summary>
         /// Schedule a Windows shutdown.
         /// </summary>
@@ -141,7 +142,7 @@ namespace YomsoleApp
                 double delay = 0D;
                 string message;
 
-                if (double.TryParse(args[1], out delay))
+                if (Double.TryParse(args[1], out delay))
                 {
                     message = $"Shutting down in {delay} minute(s)".Quote();
 
@@ -182,7 +183,7 @@ namespace YomsoleApp
 
         private static void PrintAppVersion()
         {
-            string version = assembly.Version.With(v => $"v{v.Major}.{v.Minor}.{v.Revision} build {v.Build}");
+            string version = assembly.Version.FormatWith(v => $"v{v.Major}.{v.Minor}.{v.Revision} build {v.Build}");
             int width = version.Length + 6;
 
             Rainbow.WriteColor(ConsoleColor.Cyan, $@"

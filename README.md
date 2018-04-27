@@ -42,10 +42,9 @@ Add `yom.exe` to your `PATH` for convenient command line access in Windows. Alte
 	</tr>
 	<tr>
 		<td>
-			<code>shutdown <em>minsBeforeShutdown</em></code><br>
-			<code>shutdown abort</code>
+			<code>shutdown &lt;minsBeforeShutdown | abort&gt;</code><br>
 		</td>
-		<td>Schedules a shutdown operation.</td>
+		<td>Schedules a shutdown operation or cancels active schedule.</td>
 	</tr>
 </table>
 
