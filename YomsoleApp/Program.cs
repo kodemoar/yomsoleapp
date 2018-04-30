@@ -42,6 +42,7 @@ namespace YomsoleApp
 
                 switch (cmd)
                 {
+                    case "-v":
                     case "--version":
                         PrintAppVersion();
                         break;
