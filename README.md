@@ -13,12 +13,12 @@ Add `yom.exe` to your `PATH` for convenient command line access in Windows. Alte
 		<td><strong>Description</strong></td>
 	</tr>
 	<tr>
-		<td><code>--version</code></td>
+		<td><code>-v</code>, <code>--version</code></td>
 		<td>Displays application version.</td>
 	</tr>
     <tr>
 		<td><code>base64 (-m|--mode)[=&lt;n&gt; &lt;value&gt;]</code></td>
-		<td>Converts specified text to its base-64 string representation, where <code>n</code> is either <code>encode</code> or <code>decode</code>.</td>
+		<td>Converts text to its base-64 string representation,<br>where <code>n</code> is either <code>encode</code> or <code>decode</code>.</td>
 	</tr>
 	<tr>
 		<td>
@@ -58,7 +58,7 @@ yom shutdown 15
  - and more to come...
 
 ### TODOs
- - Implement further viewing of `system boot time` in event viewer. Passing the following Event Log XML query when used in conjunction with the `/f` switch.
+ - Implement further viewing of "system boot time" in event viewer. Passing the following Event Log XML query when used in conjunction with the `/f` switch.
 	```xml
 	<QueryList>
 	  <Query Id="0" Path="System">
