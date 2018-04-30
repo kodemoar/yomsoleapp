@@ -25,7 +25,7 @@ namespace YomsoleApp
             bool cmdMode = args.Length > 0;
             bool hasArgs = args.Length > 1;
 
-            read_next:
+        read_next:
             try
             {
                 if (cmdMode)
@@ -42,11 +42,6 @@ namespace YomsoleApp
                 {
                     case "--version":
                         PrintAppVersion();
-                        break;
-
-                    case "cls":
-                    case "clear":
-                        Console.Clear();
                         break;
 
                     case "today":
@@ -73,10 +68,6 @@ namespace YomsoleApp
                             HandleTimedShutdown(args);
                         }
                         break;
-
-                    case "exit":
-                        ExitConsole();
-                        return;
 
                     case "":
                         Console.WriteLine();
@@ -118,14 +109,12 @@ namespace YomsoleApp
 
                 if (logs.Any())
                 {
-                    Console.Write("It's been ");
-
-                    Rainbow.WriteColor(ConsoleColor.Green,
-                        DateTime.Now.Subtract(logs.FirstOrDefault().TimeGenerated).FormatWith(up =>
-                           $"{up.Hours}h {up.Minutes}m {up.Seconds}s"
-                        )
+                    string timestamp = DateTime.Now.Subtract(logs.FirstOrDefault().TimeGenerated).FormatWith(up =>
+                        $"{up.Hours}h {up.Minutes}m {up.Seconds}s"
                     );
 
+                    Console.Write("It's been ");
+                    Rainbow.WriteColor(ConsoleColor.Green, timestamp);
                     Console.WriteLine(" since computer was last (re)started.");
                 }
             }
@@ -150,7 +139,7 @@ namespace YomsoleApp
                 }
                 else
                 {
-                    if (args[1] == "abort")
+                    if (args[1] == "-a" || args[1] == "--abort")
                     {
                         Shell("shutdown -a");
                     }

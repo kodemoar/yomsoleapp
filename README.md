@@ -2,7 +2,7 @@
 
 A demo implementation of some console application (written in C#), primarily aiming to function as an assistive accompaniment for common terminal activities.
 
-The most recommended way is to use a command-line parser which does all the heavy-lifting for you, like this one called [NDesk.Options](https://nuget.org/packages/NDesk.Options/).
+The most recommended way is to use a command-line parser which does all the heavy-lifting for you, like this one called [NDesk.Options](https://nuget.org/packages/NDesk.Options/) or [Command Line Parser](https://archive.codeplex.com/?p=commandline).
 
 Add `yom.exe` to your `PATH` for convenient command line access in Windows. Alternatively, `yomsole.exe` is also directly executable for basic commands.
 
@@ -14,19 +14,6 @@ Add `yom.exe` to your `PATH` for convenient command line access in Windows. Alte
 	<tr>
 		<td><code>--version</code></td>
 		<td>Displays application version.</td>
-	</tr>	
-	<tr>
-		<td>
-			<code>clear</code>,
-			<code>cls</code>
-		</td>
-		<td>Clears console window.</td>
-	</tr>
-	<tr>
-		<td>
-			<code>exit</code>
-		</td>
-		<td>Exits console application.</td>
 	</tr>
 	<tr>
 		<td>
@@ -42,7 +29,8 @@ Add `yom.exe` to your `PATH` for convenient command line access in Windows. Alte
 	</tr>
 	<tr>
 		<td>
-			<code>shutdown &lt;minsBeforeShutdown | abort&gt;</code><br>
+			<code>shutdown [&lt;minsBeforeShutdown&gt;]</code><br>
+            <code>shutdown (-a | --abort)</code>
 		</td>
 		<td>Schedules a shutdown operation or cancels active schedule.</td>
 	</tr>
