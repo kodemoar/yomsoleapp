@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using YomsoleApp.Utils;
@@ -25,7 +26,7 @@ namespace YomsoleApp
             bool cmdMode = args.Length > 0;
             bool hasArgs = args.Length > 1;
 
-        read_next:
+            read_next:
             try
             {
                 if (cmdMode)
@@ -69,6 +70,14 @@ namespace YomsoleApp
                         }
                         break;
 
+                    case "translate-color":
+                        if (cmdMode && hasArgs && !String.IsNullOrEmpty(args[1]))
+                        {
+                            Console.WriteLine(GenerateRGBA(args[1]));
+                        }
+
+                        break;
+
                     case "":
                         Console.WriteLine();
                         break;
@@ -88,15 +97,26 @@ namespace YomsoleApp
                     goto read_next;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 if (cmdMode)
                 {
-                    Warn("operation failure");
+                    Warn(ex.Message);
                     ExitConsole(ERROR_INVALID_FUNCTION);
                 }
             }
         }
+
+        public static string GenerateRGBA(string hex) =>
+            ColorTranslator.FromHtml(hex).FormatWith(color =>
+            {
+                int r = Convert.ToInt16(color.R);
+                int g = Convert.ToInt16(color.G);
+                int b = Convert.ToInt16(color.B);
+
+                return $"{r}, {g}, {b}";
+            });
+
 
         private static void HandleSystemUptimeInquiry()
         {

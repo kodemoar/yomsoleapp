@@ -2,7 +2,8 @@
 
 A demo implementation of some console application (written in C#), primarily aiming to function as an assistive accompaniment for common terminal activities.
 
-The most recommended way is to use a command-line parser which does all the heavy-lifting for you, like this one called [NDesk.Options](https://nuget.org/packages/NDesk.Options/) or [Command Line Parser](https://archive.codeplex.com/?p=commandline).
+For complex implementations, it is recommended to use a command-line parser (which does all the heavy-lifting for you), 
+like [NDesk.Options](https://nuget.org/packages/NDesk.Options/) or [Command Line Parser](https://archive.codeplex.com/?p=commandline).
 
 Add `yom.exe` to your `PATH` for convenient command line access in Windows. Alternatively, `yomsole.exe` is also directly executable for basic commands.
 
@@ -17,11 +18,13 @@ Add `yom.exe` to your `PATH` for convenient command line access in Windows. Alte
 	</tr>
 	<tr>
 		<td>
-			<code>
-			today [<a href="https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.85).aspx" target="_blank">DateTime pattern</a>]
-			</code>
+			<code>today [<a href="https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.85).aspx" target="_blank">DateTime pattern</a>]</code>
 		</td>
 		<td>Displays today's date and time.</td>
+	</tr>
+    <tr>
+		<td><code>translate-color &lt;colorHex&gt;</code></td>
+		<td>Converts Hex to RGB color structure.</td>
 	</tr>
 	<tr>
 		<td><code>uptime</code></td>
@@ -45,10 +48,11 @@ yom shutdown 15
 
  - Time elapsed since last system (re)boot
  - Windows shutdown scheduler
+ - Color converter
  - Today's date and time
  - and more to come...
 
-### Pending TODOs
+### TODOs
  - Implement further viewing of `system boot time` in event viewer. Passing the following Event Log XML query when used in conjunction with the `/f` switch.
 	```xml
 	<QueryList>
