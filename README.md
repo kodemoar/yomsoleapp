@@ -16,6 +16,10 @@ Add `yom.exe` to your `PATH` for convenient command line access in Windows. Alte
 		<td><code>--version</code></td>
 		<td>Displays application version.</td>
 	</tr>
+    <tr>
+		<td><code>base64 (-m|--mode)[=&lt;n&gt; &lt;value&gt;]</code></td>
+		<td>Converts specified text to its base-64 string representation, where <code>n</code> is either <code>encode</code> or <code>decode</code>.</td>
+	</tr>
 	<tr>
 		<td>
 			<code>today [<a href="https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.85).aspx" target="_blank">DateTime pattern</a>]</code>
@@ -33,7 +37,7 @@ Add `yom.exe` to your `PATH` for convenient command line access in Windows. Alte
 	<tr>
 		<td>
 			<code>shutdown [&lt;minsBeforeShutdown&gt;]</code><br>
-            <code>shutdown (-a | --abort)</code>
+            <code>shutdown (-a|--abort)</code>
 		</td>
 		<td>Schedules a shutdown operation or cancels active schedule.</td>
 	</tr>
@@ -46,10 +50,11 @@ yom shutdown 15
 
 ### Main features
 
+ - Base64 converter
+ - Quick color converter
  - Time elapsed since last system (re)boot
- - Windows shutdown scheduler
- - Color converter
  - Today's date and time
+ - Windows shutdown scheduler
  - and more to come...
 
 ### TODOs

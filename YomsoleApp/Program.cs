@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using YomsoleApp.Utils;
 
 namespace YomsoleApp
@@ -43,6 +44,10 @@ namespace YomsoleApp
                 {
                     case "--version":
                         PrintAppVersion();
+                        break;
+
+                    case "base64":
+                        HandleBase64Conversion(args);
                         break;
 
                     case "today":
@@ -107,7 +112,41 @@ namespace YomsoleApp
             }
         }
 
-        public static string GenerateRGBA(string hex) =>
+        private static void HandleBase64Conversion(string[] args)
+        {
+            if (args.Length >= 2)
+            {
+                string mode = args[1];
+                string res;
+
+                if ((mode.StartsWith("-m=") || mode.StartsWith("--mode=")))
+                {
+                    byte[] bytes;
+
+                    mode = mode.Substring(mode.IndexOf('=') + 1);
+
+                    if (mode == "encode")
+                    {
+                        bytes = Encoding.UTF8.GetBytes(args[2]);
+                        res = System.Convert.ToBase64String(bytes);
+                    }
+                    else if (mode == "decode")
+                    {
+                        bytes = System.Convert.FromBase64String(args[2]);
+                        res = Encoding.UTF8.GetString(bytes);
+                    }
+                    else
+                    {
+                        Warn("text not defined");
+                        return;
+                    }
+
+                    Console.WriteLine(res);
+                }
+            }
+        }
+
+        private static string GenerateRGBA(string hex) =>
             ColorTranslator.FromHtml(hex).FormatWith(color =>
             {
                 int r = Convert.ToInt16(color.R);
