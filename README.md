@@ -1,6 +1,8 @@
 # Yomsole App
 
-> Random console application to mess around with your terminals.
+A demo implementation of some console application (written in C#), primarily aiming to function as an assistive accompaniment for common terminal activities.
+
+The most recommended way is to use a command-line parser which does all the heavy-lifting for you, like this one called [NDesk.Options](https://nuget.org/packages/NDesk.Options/).
 
 Add `yom.exe` to your `PATH` for convenient command line access in Windows. Alternatively, `yomsole.exe` is also directly executable for basic commands.
 
