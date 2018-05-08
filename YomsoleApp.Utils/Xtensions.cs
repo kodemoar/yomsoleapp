@@ -2,7 +2,7 @@
 
 namespace YomsoleApp.Utils
 {
-    internal static class Xtensions
+    public static class Xtensions
     {
         public static TReturn FormatWith<TSource, TReturn>(this TSource source, Func<TSource, TReturn> evaluator)
             => evaluator.Invoke(source);
